@@ -1,12 +1,18 @@
-#include <stdio.h>     //Include the standard input/output libraries
-#include <iostream>  //Cout and Cin etc.
+#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
+//#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h>          // This is for Sharcnet
+//#include </usr/include/fftw3.h>                                    // This is for use on Landua
+//#include </usr/local/include/fftw3.h>                              // This is for elmspace2
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#include <stdio.h>     
+#include <iostream>  
 #include <fstream>
 #include <complex>
-#include <stdlib.h>    //Include standard fucntion libraries
-#include <math.h>      //Use the math function libraries
-#include <time.h>      //Call system time libraries to define the integer seed for random numbers
-#include "./include/smemory.hh"  //Use my custom memory handling class
-#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h>
+#include <stdlib.h>   
+#include <math.h>     
+#include <time.h>     
+#include "./MISCELLANEOUS/smemory.hh" 
+
 
 #define Nx 32
 #define Ny 32
@@ -22,7 +28,7 @@ double NA;
 double fB;
 
 double zA,zI,PA;
-double diel_cons;        //Dielectric constant
+double diel_cons;      
 
 fftw_plan forward_plan, inverse_plan;
 fftw_complex *input_q, *transformed_q, *final_q;
