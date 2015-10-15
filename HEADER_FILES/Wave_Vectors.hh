@@ -1,12 +1,7 @@
-void WaveVectors(double ***k_vector, double *dxyz){
+void Wave_Vectors( ){
 
   int             i,j,k;
   double          lx,ly,lz;
-  double          *Kx,*Ky,*Kz;
-
-  Kx=create_1d_double_array(Nx,"Kx");
-  Ky=create_1d_double_array(Ny,"Ky");
-  Kz=create_1d_double_array(Nz,"Kz");
 
   lx=dxyz[0]*Nx;
   ly=dxyz[1]*Ny;
@@ -20,8 +15,7 @@ void WaveVectors(double ***k_vector, double *dxyz){
 
   for(i=0;i<(int)(Nz/2);i++){Kz[i]=(2.*Pi*i)/lz;}
   for(i=(int)(Nz/2);i<Nz;i++){Kz[i]=(2.*Pi*(Nz-i))/lz;}
-  
-  
+    
   for(i=0;i<Nx;i++){Kx[i]*=Kx[i];}
   for(i=0;i<Ny;i++){Ky[i]*=Ky[i];}
   for(i=0;i<Nz;i++){Kz[i]*=Kz[i];}
@@ -33,10 +27,5 @@ void WaveVectors(double ***k_vector, double *dxyz){
       }
     }
   }
-
-  
-  destroy_1d_double_array(Kx);
-  destroy_1d_double_array(Ky);
-  destroy_1d_double_array(Kz);
 
 };

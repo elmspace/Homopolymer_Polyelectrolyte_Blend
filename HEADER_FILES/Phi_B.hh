@@ -1,15 +1,8 @@
-double ConcB(double ****phi,double ****w,double *Ns,double ds,double ***k_vector,double *dxyz){
+double Phi_B( ){
 
   int         i,j,l,s;
   double      Q;
-  double      ****qB;
-  double      ***qint;
-  
  
-
-  qB=create_4d_double_array(Nx,Ny,Nz,((int)Ns[1]+1),"qB");
-  qint=create_3d_double_array(Nx,Ny,Nz,"qint");
-
   // Here is the for loop for doing the qint, setting it to 1.0
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
@@ -34,7 +27,6 @@ double ConcB(double ****phi,double ****w,double *Ns,double ds,double ***k_vector
   // Normalizing with respect to the volume of the box
   Q/=((dxyz[0]*Nx)*(dxyz[1]*Ny)*(dxyz[2]*Nz));
   
-  
   // Here we do the concentration calculation
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
@@ -50,17 +42,12 @@ double ConcB(double ****phi,double ****w,double *Ns,double ds,double ***k_vector
 	  }
 	}
 
+	phi[1][i][j][l]*=(pBave/(Q*kappa));
 
-	phi[1][i][j][l]*=(pBave/(Q*fB));
       }
     }
   }
  
-  //clearing the memory
-  destroy_4d_double_array(qB); 
-  destroy_3d_double_array(qint);
-
   return Q;
-
 
 };

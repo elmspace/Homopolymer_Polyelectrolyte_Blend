@@ -1,29 +1,20 @@
-double ConcA(double ****phi,double ****w, double *Ns,double ds,double ***k_vector,double *dxyz){
+double Phi_A( ){
 
   int         i,j,l,s;
   double      Q;
-  double      ****qA;
-  double      ***qint;
-  
  
-
-
-  qA=create_4d_double_array(Nx,Ny,Nz,((int)Ns[0]+1),"qA");
-  qint=create_3d_double_array(Nx,Ny,Nz,"qint");
- 
-
-
   // Here is the for loop for doing the qint, setting it to 1.0
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
-	qint[i][j][l]=1.0;
+	qint[i][j][l] = 1.0;
+	eff_wA[i][j][k] = w[0][i][j][k] - PA*w_e[i][j][k];
       }
     }
   }
   
   // Here we will solve the diffusion question
-  solveModDiffEqn_FFT(qA,w[0],qint,ds,(int)Ns[0],1,k_vector,dxyz);
+  solveModDiffEqn_FFT(qA,eff_wA,qint,ds,(int)Ns[0],1,k_vector,dxyz);
 
   // Here we are doing the sum to get the single chain partition function
   Q=0.0;
@@ -58,11 +49,6 @@ double ConcA(double ****phi,double ****w, double *Ns,double ds,double ***k_vecto
     }
   }
 
-  //clearing the memory
-  destroy_4d_double_array(qA); 
-  destroy_3d_double_array(qint);
-
   return Q;
-
 
 };

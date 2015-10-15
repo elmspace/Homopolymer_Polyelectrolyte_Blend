@@ -1,15 +1,13 @@
-double ConcI(double ****phi, double ****w, double *Ns,double *dxyz){
+double Phi_I( ){
 
   int         i,j,k,s;
   double      Q;
-  double      ***qI;
   
-  qI=create_3d_double_array(Nx,Ny,Nz,"qI");
- 
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
-	qI[i][j][k]=exp(-w[2][i][j][k]/NA);
+	eff_wI[i][j][k] = w[2][i][j][k] + w_e[i][j][k];
+	qI[i][j][k] = exp(-eff_wI[i][j][k]/NA); 
       }
     }
   }
@@ -37,10 +35,6 @@ double ConcI(double ****phi, double ****w, double *Ns,double *dxyz){
     }
   }
   
-  //clearing the memory
-  destroy_3d_double_array(qI);  
-
   return Q;
-
 
 };

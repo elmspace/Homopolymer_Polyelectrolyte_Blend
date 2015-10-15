@@ -1,4 +1,4 @@
-void Incomp(double ***eta, double ****phi, double ***delphi){
+void Incompressibility( ){
 
   int     i,j,k;
   int     chain; 
