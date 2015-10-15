@@ -21,8 +21,8 @@
 #define ChainType 3
 #define Pi 3.14159
 
-double Iomega;
-double LAM, HEX, BCC;
+int Iomega;
+int LAM, HEX, BCC;
 
 double NA;
 double fB;
