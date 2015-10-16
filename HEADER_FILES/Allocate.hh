@@ -22,6 +22,12 @@ void Allocate (int task){
     delW=create_4d_double_array(ChainType,Nx,Ny,Nz,"delW");
     delphi=create_3d_double_array(Nx,Ny,Nz,"delphi");
     newW=create_4d_double_array(ChainType,Nx,Ny,Nz,"newW");
+    dxyz_temp=create_1d_double_array(3,"dxyz_temp");
+    w_temp=create_4d_double_array(ChainType,Nx,Ny,Nz,"w_temp");
+    box_x=create_1d_double_array(27,"box_x");
+    box_y=create_1d_double_array(27,"box_y");
+    box_z=create_1d_double_array(27,"box_z");
+    box_fE=create_1d_double_array(27,"box_fE");
     // Setting up the FFTW for MDE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     input_q = (fftw_complex *)fftw_malloc(sizeof(fftw_complex)*Nx*Ny*Nz);
     transformed_q = (fftw_complex *)fftw_malloc(sizeof(fftw_complex)*Nx*Ny*Nz);
@@ -57,14 +63,14 @@ void Allocate (int task){
     fftw_destroy_plan(forward_plan_PB);
     fftw_destroy_plan(inverse_plan_PB);
     destroy_4d_double_array(w);
-    destroy_4d_double_array(eff_wA);
-    destroy_4d_double_array(eff_wI);
-    destroy_4d_double_array(w_e);
+    destroy_3d_double_array(eff_wA);
+    destroy_3d_double_array(eff_wI);
+    destroy_3d_double_array(w_e);
     destroy_3d_double_array(V);
     destroy_3d_double_array(Gradient_V);
     destroy_3d_double_array(eta);
     destroy_4d_double_array(phi);
-    destroy_4d_double_array(phi_e);
+    destroy_3d_double_array(phi_e);
     destroy_1d_double_array(chi);
     destroy_1d_double_array(Ns);
     destroy_3d_double_array(k_vector);
@@ -76,6 +82,12 @@ void Allocate (int task){
     destroy_3d_double_array(delphi);
     destroy_4d_double_array(delW);
     destroy_4d_double_array(newW);
+    destroy_1d_double_array(dxyz_temp);
+    destroy_1d_double_array(box_x);
+    destroy_1d_double_array(box_y);
+    destroy_1d_double_array(box_z);
+    destroy_1d_double_array(box_fE);
+    destroy_4d_double_array(w_temp);
   }
 
 };

@@ -8,7 +8,7 @@ double Phi_A( ){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
 	qint[i][j][l] = 1.0;
-	eff_wA[i][j][k] = w[0][i][j][k] - PA*w_e[i][j][k];
+	eff_wA[i][j][l] = w[0][i][j][l] - PA*w_e[i][j][l];
       }
     }
   }

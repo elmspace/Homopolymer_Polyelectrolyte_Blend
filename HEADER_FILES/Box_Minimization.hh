@@ -2,17 +2,6 @@ void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double
 
   int     i,j,k,l,ii,jj,ll,kk;
   double  delx,dely,delz;
-  double  box, *dxyz_temp;
-  double  *box_x,*box_y,*box_z,*box_fE;
-  double  ****w_temp;
-
-
-  w_temp=create_4d_double_array(ChainType,Nx,Ny,Nz,"w_temp");
-  box_x=create_1d_double_array(27,"box_x");
-  box_y=create_1d_double_array(27,"box_y");
-  box_z=create_1d_double_array(27,"box_z");
-  box_fE=create_1d_double_array(27,"box_fE");
-  dxyz_temp=create_1d_double_array(3,"dxyz_temp");
 
   delx=0.003125;
   dely=0.003125;
@@ -64,20 +53,9 @@ void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double
     }
   }
 
-  
   dxyz[0]=dxyz[0]+box_x[i];
   dxyz[1]=dxyz[1]+box_y[i];
   dxyz[2]=dxyz[2]+box_z[i];
-
-  //std::cout<<i<<std::endl;
-  
-   
-  destroy_1d_double_array(dxyz_temp);
-  destroy_1d_double_array(box_x);
-  destroy_1d_double_array(box_y);
-  destroy_1d_double_array(box_z);
-  destroy_1d_double_array(box_fE);
-  destroy_4d_double_array(w_temp);
-  
+ 
 };
 

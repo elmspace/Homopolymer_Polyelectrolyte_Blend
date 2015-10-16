@@ -16,7 +16,7 @@ void FreeEnergy( ){
   std::ofstream outputFile("./fE.dat");
   do{
    
-    Wave_Vectors( );   //
+    Wave_Vectors(0);   //
     currentfE=0.0;
     deltafE=0.0;
   

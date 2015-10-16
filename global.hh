@@ -1,6 +1,6 @@
-#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
+//#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
 //#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h>          // This is for Sharcnet
-//#include </usr/include/fftw3.h>                                    // This is for use on Landua
+#include </usr/include/fftw3.h>                                    // This is for use on Landua
 //#include </usr/local/include/fftw3.h>                              // This is for elmspace2
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -66,9 +66,13 @@ double *Ns;
 double ***k_vector;
 double *dxyz;
 double *Kx,*Ky,*Kz;
-double  ***delphi;
-double  ****delW;
-double  ****newW;
+double ***delphi;
+double ****delW;
+double ****newW;
+double *dxyz_temp;
+double *box_x,*box_y,*box_z;
+double *box_fE;
+double ****w_temp;
 
 
 double ****qA;

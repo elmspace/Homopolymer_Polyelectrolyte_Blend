@@ -7,7 +7,7 @@ void Solve_PB_Equation( ){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
 	ss=k+Nz*(j+Ny*i);
-	input_PB[ss][0]=(-(NA*tau)/(diel_cons*24.0*Pi))*(phi_e[i][j][k]);
+	input_PB[ss][0]=(-(NA*tau)/(epsilon*24.0*Pi))*(phi_e[i][j][k]);
 	input_PB[ss][1]=0.0;
       }
     }
