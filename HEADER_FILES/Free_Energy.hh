@@ -42,21 +42,24 @@ void FreeEnergy( ){
       fE_charge=0.0;
 
 
-      // This is where we calculate the contribution from lplacian V
-      /*
-      for(i=0;i<(Nx-1);i++){
-	for(j=0;j<(Ny-1);j++){
-	  for(k=0;k<(Nz-1);k++){
-	    fE_charge+=pow(((psi[i][j][k]-psi[i+1][j][k])/dxyz[0]),2)*dxyz[0]*dxyz[1]*dxyz[2];
-	    fE_charge+=pow(((psi[i][j][k]-psi[i][j+1][k])/dxyz[1]),2)*dxyz[0]*dxyz[1]*dxyz[2];
-	    fE_charge+=pow(((psi[i][j][k]-psi[i][j][k+1])/dxyz[2]),2)*dxyz[0]*dxyz[1]*dxyz[2];
+      // Calculating the gradient of the electrostatic potential
+      Gradient(V,0,dxyz,Gradient_V_x);
+      Gradient(V,1,dxyz,Gradient_V_y);
+      Gradient(V,2,dxyz,Gradient_V_z);
+
+      // Calculating the contribution to the free energy from electrostatics
+      fE_charge=0.0;
+      for(i=0;i<Nx;i++){
+	for(j=0;j<Ny;j++){
+	  for(k=0;k<Nz;k++){
+	    fE_charge -= ((12.0*Pi*epsilon)/tau)*(pow(Gradient_V_x[i][j][k],2)+pow(Gradient_V_y[i][j][k],2)+pow(Gradient_V_z[i][j][k],2))*(dxyz[0]*dxyz[1]*dxyz[2]);
+	    fE_charge += (NA*phi_e[i][j][k]*V[i][j][k])*(dxyz[0]*dxyz[1]*dxyz[2]);
 	  }
 	}
       }
-      fE_charge*=(diel_cons)/(2.0*Nx*Ny*Nz);
-      */
-
-      
+      fE_charge/=((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2]));
+     
+      // Calculaing the new omega fields and other contributions to the free energy
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(k=0;k<Nz;k++){
@@ -66,8 +69,8 @@ void FreeEnergy( ){
 		newW[ii][i][j][k] += ((chiMatrix[ii][jj]*phi[jj][i][j][k]));
 		fEchi += phi[ii][i][j][k]*chiMatrix[ii][jj]*phi[jj][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2];
 	      }
-	      if(ii==0){newW[ii][i][j][k] += eta[i][j][k]-(((12.0*Pi*epsilon)/(tau))*pow(Gradient_V[i][j][k],2));}  //A
-	      if(ii==1){newW[ii][i][j][k] += eta[i][j][k]-(((12.0*Pi*epsilon)/(tau))*pow(Gradient_V[i][j][k],2));}  //B
+	      if(ii==0){newW[ii][i][j][k] += eta[i][j][k]-(((12.0*Pi*epsilon)/(tau))*(pow(Gradient_V_x[i][j][k],2)+pow(Gradient_V_y[i][j][k],2)+pow(Gradient_V_z[i][j][k],2)));}  //A
+	      if(ii==1){newW[ii][i][j][k] += eta[i][j][k]-(((12.0*Pi*epsilon)/(tau))*(pow(Gradient_V_x[i][j][k],2)+pow(Gradient_V_y[i][j][k],2)+pow(Gradient_V_z[i][j][k],2)));}  //B
 	      fEW += (newW[ii][i][j][k]*phi[ii][i][j][k]*dxyz[0]*dxyz[1]*dxyz[2]);
 	      delW[ii][i][j][k] = newW[ii][i][j][k]-w[ii][i][j][k];
 	      deltaW += fabs(delW[ii][i][j][k]);
@@ -109,7 +112,7 @@ void FreeEnergy( ){
     if(oldfE<currentfE){
       msg=0;
     }
-    if(msg!==0){
+    if(msg!=0){
       oldfE=currentfE;
     }
    

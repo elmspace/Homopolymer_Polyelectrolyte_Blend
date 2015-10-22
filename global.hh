@@ -1,13 +1,9 @@
-//#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
+#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
 //#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h>          // This is for Sharcnet
-#include </usr/include/fftw3.h>                                    // This is for use on Landua
+//#include </usr/include/fftw3.h>                                    // This is for use on Landua
 //#include </usr/local/include/fftw3.h>                              // This is for elmspace2
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
 
 #include <stdio.h>     
 #include <iostream>  
@@ -15,10 +11,7 @@
 #include <complex>
 #include <stdlib.h>   
 #include <math.h>     
-#include <time.h>     
-#include "./MISCELLANEOUS/smemory.hh" 
-
-
+#include <time.h>      
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -58,7 +51,9 @@ double ****w, ****phi;
 double ***w_e, ***phi_e;
 double ***eff_wA, ***eff_wI;
 double ***V;
-double ***Gradient_V;
+double ***Gradient_V_x;
+double ***Gradient_V_y;
+double ***Gradient_V_z;
 double ***eta;
 double *chi;
 double **chiMatrix;

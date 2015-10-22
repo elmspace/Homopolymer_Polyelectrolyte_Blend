@@ -9,7 +9,9 @@ void Allocate (int task){
     eff_wI = create_3d_double_array(Nx,Ny,Nz,"eff_wI");
     phi_e = create_3d_double_array(Nx,Ny,Nz,"phi_e");
     V = create_3d_double_array(Nx,Ny,Nz,"V");
-    Gradient_V = create_3d_double_array(Nx,Ny,Nz,"Gradient_V");
+    Gradient_V_x = create_3d_double_array(Nx,Ny,Nz,"Gradient_V_x");
+    Gradient_V_y = create_3d_double_array(Nx,Ny,Nz,"Gradient_V_y");
+    Gradient_V_z = create_3d_double_array(Nx,Ny,Nz,"Gradient_V_z");
     eta = create_3d_double_array(Nx,Ny,Nz,"eta");
     chi = create_1d_double_array(ChainType,"chi");
     Ns = create_1d_double_array(ChainType,"Ns");
@@ -67,7 +69,9 @@ void Allocate (int task){
     destroy_3d_double_array(eff_wI);
     destroy_3d_double_array(w_e);
     destroy_3d_double_array(V);
-    destroy_3d_double_array(Gradient_V);
+    destroy_3d_double_array(Gradient_V_x);
+    destroy_3d_double_array(Gradient_V_y);
+    destroy_3d_double_array(Gradient_V_z);
     destroy_3d_double_array(eta);
     destroy_4d_double_array(phi);
     destroy_3d_double_array(phi_e);
