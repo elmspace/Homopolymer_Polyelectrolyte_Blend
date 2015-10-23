@@ -1,21 +1,13 @@
-void Wave_Vectors(int toDo){
+void Wave_Vectors(double *DXYZ){
 
   int             i,j,k;
   double          lx,ly,lz;
 
-  if(toDo == 0){
-    lx=dxyz[0]*Nx;
-    ly=dxyz[1]*Ny;
-    lz=dxyz[2]*Nz;
-  }else if (toDo == 1){
-    lx=dxyz_temp[0]*Nx;
-    ly=dxyz_temp[1]*Ny;
-    lz=dxyz_temp[2]*Nz;
-  }else{
-    std::cout<<"Wrong toDo option in Wave_Vectors!"<<std::endl;
-    exit(0);
-  }
 
+  lx=DXYZ[0]*Nx;
+  ly=DXYZ[1]*Ny;
+  lz=DXYZ[2]*Nz;
+ 
   for(i=0;i<(int)(Nx/2);i++){Kx[i]=(2.*Pi*i)/lx;}
   for(i=(int)(Nx/2);i<Nx;i++){Kx[i]=(2.*Pi*(Nx-i))/lx;}
 

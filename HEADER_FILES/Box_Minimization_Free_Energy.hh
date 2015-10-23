@@ -3,7 +3,7 @@ double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, 
   double  QA,QB,QI; 
   double  fES,currentfE; 
 
-  Wave_Vectors(1);
+  Wave_Vectors(dxyz_temp);
   
   QA=Phi_A(w_temp,dxyz_temp);
   QB=Phi_B(w_temp,dxyz_temp);

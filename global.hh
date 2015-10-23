@@ -28,15 +28,15 @@
 double NA = 100;
 double NB = NA;
 double NI = 1;
-double PA = 0.001;
+double PA = 1.0e-20;
 double tau = 100.0;
 double epsilon = 4.6;
-double xAB = 20.0;
+double xAB = 5.0;
 double xAI = 0.0;
 double xBI = 0.0;
-double Lx = 5.0;
-double Ly = 5.0;
-double Lz = 5.0;
+double Lx = 10.0;
+double Ly = 10.0;
+double Lz = 10.0;
 double epsilon_w = 0.05;
 double epsilon_p = 0.05;
 double precision=1.0e-3; 
@@ -86,7 +86,6 @@ fftw_complex *input_q, *transformed_q, *final_q;
 
 fftw_plan forward_plan_PB,inverse_plan_PB;
 fftw_complex *input_PB, *transformed_PB, *final_PB;
-
 
 
 

@@ -16,7 +16,7 @@ void FreeEnergy( ){
   std::ofstream outputFile("./fE.dat");
   do{
    
-    Wave_Vectors(0);   //
+    Wave_Vectors(dxyz);
     currentfE=0.0;
     deltafE=0.0;
   
@@ -28,10 +28,10 @@ void FreeEnergy( ){
       fEW=0.0;
       fEchi=0.0;
       fES=0.0;
-      
-      QA=Phi_A( );
-      QB=Phi_B( );
-      QI=Phi_I( );
+
+      QA=Phi_A(w,dxyz);
+      QB=Phi_B(w,dxyz);
+      QI=Phi_I(w,dxyz);
       Phi_e();
       Solve_PB_Equation( );
       Incompressibility( );
@@ -40,7 +40,6 @@ void FreeEnergy( ){
       fEchi=0.0;
       deltaW=0.0;           
       fE_charge=0.0;
-
 
       // Calculating the gradient of the electrostatic potential
       Gradient(V,0,dxyz,Gradient_V_x);
@@ -97,10 +96,14 @@ void FreeEnergy( ){
 	for(j=0;j<Ny;j++){
 	  for(k=0;k<Nz;k++){
 	    for(chain=0;chain<ChainType;chain++){
-	      w[chain][i][j][k]+=(epsilon_w*delW[chain][i][j][k]-epsilon_phi*delphi[i][j][k]);
+	      w[chain][i][j][k]+=(epsilon_w*delW[chain][i][j][k]-epsilon_p*delphi[i][j][k]);
 	    }
 	  }
 	}
+      }
+
+      if((iter%10)==0){
+	saveData();
       }
     
     }while(deltaW>precision);

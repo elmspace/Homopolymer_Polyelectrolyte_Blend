@@ -8,10 +8,8 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
   double         ***wds, ***kds;
  
  
-
   wds=create_3d_double_array(Nx,Ny,Nz,"wds");
   kds=create_3d_double_array(Nx,Ny,Nz,"kds");
-
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
@@ -20,9 +18,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
       }
     }
   }
-  
   if(sign==1){
-   
     for(i=0;i<Nx;i++){
       for(j=0;j<Ny;j++){
 	for(l=0;l<Nz;l++){
@@ -30,9 +26,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
     }
-    
-    for(s=0;s<((int)Ns);s++){               // Why not to Ns+1 ??
-      
+    for(s=0;s<((int)Ns);s++){
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -43,7 +37,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
       fftw_execute(forward_plan);
-
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -54,7 +47,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
       fftw_execute(inverse_plan);
-      
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -64,9 +56,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
     }
-
   }else{
-
     for(i=0;i<Nx;i++){
       for(j=0;j<Ny;j++){
 	for(l=0;l<Nz;l++){
@@ -74,9 +64,7 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
     }
-
-    for(s=0;s<(Ns);s++){                   // why start from Ns and not 0 again?
-      
+    for(s=0;s<(Ns);s++){ 
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -87,7 +75,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
       fftw_execute(forward_plan);
-
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -98,7 +85,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
 	}
       }
       fftw_execute(inverse_plan);
-      
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(l=0;l<Nz;l++){
@@ -109,8 +95,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
       }
     }
   }
-
-    //std::cout<<Nx*Ny*Nz*dxyz[0]*dxyz[1]*dxyz[2]<<std::endl;
 
   destroy_3d_double_array(wds);
   destroy_3d_double_array(kds);

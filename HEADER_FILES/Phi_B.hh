@@ -1,4 +1,4 @@
-double Phi_B( ){
+double Phi_B(double ****W, double *DXYZ){
 
   int         i,j,l,s;
   double      Q;
@@ -13,19 +13,19 @@ double Phi_B( ){
   }
   
   // Here we will solve the diffusion question
-  solveModDiffEqn_FFT(qB,w[1],qint,ds,(int)Ns[1],1,k_vector,dxyz);
+  solveModDiffEqn_FFT(qB,W[1],qint,ds,(int)Ns[1],1,k_vector,DXYZ);
 
   // Here we are doing the sum to get the single chain partition function
   Q=0.0;
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
-	Q+=qB[i][j][l][(int)Ns[1]]*dxyz[0]*dxyz[1]*dxyz[2];
+	Q+=qB[i][j][l][(int)Ns[1]]*DXYZ[0]*DXYZ[1]*DXYZ[2];
       }
     }
   }
   // Normalizing with respect to the volume of the box
-  Q/=((dxyz[0]*Nx)*(dxyz[1]*Ny)*(dxyz[2]*Nz));
+  Q/=((DXYZ[0]*Nx)*(DXYZ[1]*Ny)*(DXYZ[2]*Nz));
   
   // Here we do the concentration calculation
   for(i=0;i<Nx;i++){

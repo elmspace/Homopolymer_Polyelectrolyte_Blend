@@ -16,19 +16,18 @@
 #include "./HEADER_FILES/Box_Minimization_Free_Energy.hh" 
 #include "./HEADER_FILES/Box_Minimization.hh"
 #include "./HEADER_FILES/Gradient.hh"
+#include "./HEADER_FILES/Save_Data.hh"
 #include "./HEADER_FILES/Free_Energy.hh" 
 
 using namespace std;
 
-
 int main(){
-
+  
   Allocate(1);
   Parameters( );
- 
   omega( );
-
   FreeEnergy( );
+  Allocate(-1);
   
   return 0;
 }

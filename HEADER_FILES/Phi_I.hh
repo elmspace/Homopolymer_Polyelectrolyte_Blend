@@ -1,4 +1,4 @@
-double Phi_I( ){
+double Phi_I(double ****W, double *DXYZ){
 
   int         i,j,k,s;
   double      Q;
@@ -6,7 +6,7 @@ double Phi_I( ){
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
-	eff_wI[i][j][k] = w[2][i][j][k] + w_e[i][j][k];
+	eff_wI[i][j][k] = W[2][i][j][k] + w_e[i][j][k];
 	qI[i][j][k] = exp(-eff_wI[i][j][k]/NA); 
       }
     }
@@ -17,12 +17,12 @@ double Phi_I( ){
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(k=0;k<Nz;k++){
-	Q+=qI[i][j][k]*dxyz[0]*dxyz[1]*dxyz[2];
+	Q+=qI[i][j][k]*DXYZ[0]*DXYZ[1]*DXYZ[2];
       }
     }
   }
   // Normalizing with respect to the volume of the box
-  Q/=((dxyz[0]*Nx)*(dxyz[1]*Ny)*(dxyz[2]*Nz));
+  Q/=((DXYZ[0]*Nx)*(DXYZ[1]*Ny)*(DXYZ[2]*Nz));
   
   // Here we do the concentration calculation
   for(i=0;i<Nx;i++){

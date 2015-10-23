@@ -45,8 +45,8 @@ void Allocate (int task){
     forward_plan_PB = fftw_plan_dft_3d(Nx,Ny,Nz,input_PB,transformed_PB,FFTW_FORWARD,FFTW_MEASURE);
     inverse_plan_PB = fftw_plan_dft_3d(Nx,Ny,Nz,transformed_PB,final_PB,FFTW_BACKWARD,FFTW_MEASURE);
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    qA = create_4d_double_array(Nx,Ny,Nz,((int)Ns[0]+1),"qA");
-    qB = create_4d_double_array(Nx,Ny,Nz,((int)Ns[1]+1),"qB");
+    qA = create_4d_double_array(Nx,Ny,Nz,((int)NA+1),"qA");
+    qB = create_4d_double_array(Nx,Ny,Nz,((int)NB+1),"qB");
     qI = create_3d_double_array(Nx,Ny,Nz,"qI");
     qint = create_3d_double_array(Nx,Ny,Nz,"qint");
   }else if(task==-1){
