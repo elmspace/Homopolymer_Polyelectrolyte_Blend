@@ -1,18 +1,18 @@
 
-#include "./global.hh"
-#include "./HEADER_FILES/Memory.hh"
-#include "./HEADER_FILES/Allocate.hh"             
-#include "./HEADER_FILES/Parameters.hh"      
-#include "./HEADER_FILES/Wave_Vectors.hh"    
-#include "./HEADER_FILES/Omega.hh"           
-#include "./HEADER_FILES/Solve_Diffusion_Equation.hh"
-#include "./HEADER_FILES/Solve_PB_Equation.hh"        
-#include "./HEADER_FILES/Phi_A.hh"                    
-#include "./HEADER_FILES/Phi_B.hh"                    
-#include "./HEADER_FILES/Phi_I.hh"
-#include "./HEADER_FILES/Phi_e.hh"          
-#include "./HEADER_FILES/Homogenous_Free_Energy.hh" 
-#include "./HEADER_FILES/Incompressibility.hh"
+#include "./global.hh" //Ok
+#include "./HEADER_FILES/Memory.hh" //Ok
+#include "./HEADER_FILES/Allocate.hh" //Ok     
+#include "./HEADER_FILES/Parameters.hh" //Ok
+#include "./HEADER_FILES/Wave_Vectors.hh" //Ok
+#include "./HEADER_FILES/Omega.hh" // Ok
+#include "./HEADER_FILES/Solve_Diffusion_Equation.hh" // Ok
+#include "./HEADER_FILES/Solve_PB_Equation.hh" // Ok
+#include "./HEADER_FILES/Phi_A.hh" // Ok
+#include "./HEADER_FILES/Phi_B.hh" // Ok
+#include "./HEADER_FILES/Phi_I.hh" // Ok
+#include "./HEADER_FILES/Phi_e.hh" // Ok
+#include "./HEADER_FILES/Homogenous_Free_Energy.hh" // Ok
+#include "./HEADER_FILES/Incompressibility.hh" // Ok
 #include "./HEADER_FILES/Box_Minimization_Free_Energy.hh" 
 #include "./HEADER_FILES/Box_Minimization.hh"
 #include "./HEADER_FILES/Gradient.hh"

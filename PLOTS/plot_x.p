@@ -1,6 +1,7 @@
 reset
 
-path= "/Users/ashkandehghan/Desktop/SCFT_CODES/Homopolymer_Polyelectrolyte_Blend/PHI/" # Mac
+#path= "/Users/ashkandehghan/Desktop/SCFT_CODES/Homopolymer_Polyelectrolyte_Blend/PHI/" # Mac
+path= "/1/home/dehgha2/Desktop/SCFT_CODES/Homopolymer_Polyelectrolyte_Blend/Homopolymer_Polyelectrolyte_Blend/PHI/"
 
 set autoscale
 set key r c

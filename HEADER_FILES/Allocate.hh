@@ -1,5 +1,7 @@
+/*
+  In Allocate.hh we use Memory.hh to allocate and deallocate memory
+*/
 void Allocate (int task){
-
 
   if(task==1){
     w = create_4d_double_array(ChainType,Nx,Ny,Nz,"w");
@@ -30,6 +32,8 @@ void Allocate (int task){
     box_y=create_1d_double_array(27,"box_y");
     box_z=create_1d_double_array(27,"box_z");
     box_fE=create_1d_double_array(27,"box_fE");
+    wds=create_3d_double_array(Nx,Ny,Nz,"wds");
+    kds=create_3d_double_array(Nx,Ny,Nz,"kds");
     // Setting up the FFTW for MDE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     input_q = (fftw_complex *)fftw_malloc(sizeof(fftw_complex)*Nx*Ny*Nz);
     transformed_q = (fftw_complex *)fftw_malloc(sizeof(fftw_complex)*Nx*Ny*Nz);
@@ -45,8 +49,8 @@ void Allocate (int task){
     forward_plan_PB = fftw_plan_dft_3d(Nx,Ny,Nz,input_PB,transformed_PB,FFTW_FORWARD,FFTW_MEASURE);
     inverse_plan_PB = fftw_plan_dft_3d(Nx,Ny,Nz,transformed_PB,final_PB,FFTW_BACKWARD,FFTW_MEASURE);
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    qA = create_4d_double_array(Nx,Ny,Nz,((int)NA+1),"qA");
-    qB = create_4d_double_array(Nx,Ny,Nz,((int)NB+1),"qB");
+    qA = create_4d_double_array(Nx,Ny,Nz,(int(NA)+1),"qA");
+    qB = create_4d_double_array(Nx,Ny,Nz,(int(NB)+1),"qB");
     qI = create_3d_double_array(Nx,Ny,Nz,"qI");
     qint = create_3d_double_array(Nx,Ny,Nz,"qint");
   }else if(task==-1){
@@ -92,6 +96,8 @@ void Allocate (int task){
     destroy_1d_double_array(box_z);
     destroy_1d_double_array(box_fE);
     destroy_4d_double_array(w_temp);
+    destroy_3d_double_array(wds);
+    destroy_3d_double_array(kds);
   }
 
 };

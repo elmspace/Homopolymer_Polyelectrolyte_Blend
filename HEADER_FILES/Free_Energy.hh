@@ -84,9 +84,9 @@ void FreeEnergy( ){
       fEchi/=(2.0*((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
       fEW/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
        
-      //fE_homo=homogenousfE(chiMatrix);
+      fE_homo=homogenousfE( );
 
-      currentfE=-fES-fEW+fEchi-fE_charge;
+      currentfE=-fES-fEW+fEchi-fE_charge-fE_homo;
  
       deltafE=fabs(currentfE-oldfE);
 
@@ -111,7 +111,7 @@ void FreeEnergy( ){
     outputFile <<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<" "<<currentfE<<" "<<chi[4]<<std::endl;     
     size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
     
-    
+    break;
     if(oldfE<currentfE){
       msg=0;
     }

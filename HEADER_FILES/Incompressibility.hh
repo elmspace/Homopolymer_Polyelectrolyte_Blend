@@ -1,3 +1,6 @@
+/*
+  Calculating the incompressibility condition
+*/
 void Incompressibility( ){
 
   int     i,j,k;

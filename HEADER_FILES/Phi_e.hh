@@ -1,3 +1,6 @@
+/*
+  Calculating the total charge at position r
+*/
 void Phi_e( ){
 
   int i, j, k;

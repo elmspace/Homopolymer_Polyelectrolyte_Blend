@@ -1,4 +1,7 @@
-double homogenousfE(double **chiMatrix){
+/*
+  Calculating the homogenous free energy
+*/
+double homogenousfE( ){
 
   int     i,j;
   double  *avphi;
@@ -14,10 +17,9 @@ double homogenousfE(double **chiMatrix){
 
   for(i=0;i<ChainType;i++){
     for(j=i;j<ChainType;j++){
-
       fE_homo+=avphi[i]*avphi[j]*chiMatrix[i][j];
-
-    }}
+    }
+  }
   
   return fE_homo;
   

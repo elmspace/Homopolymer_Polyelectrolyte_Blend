@@ -1,3 +1,6 @@
+/*
+  Calculating Phi_I
+*/
 double Phi_I(double ****W, double *DXYZ){
 
   int         i,j,k,s;

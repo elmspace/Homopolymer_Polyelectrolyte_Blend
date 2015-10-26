@@ -1,3 +1,6 @@
+/*
+  Calculating PhiA
+*/
 double Phi_A(double ****W, double *DXYZ){
 
   int         i,j,l,s;
@@ -15,13 +18,13 @@ double Phi_A(double ****W, double *DXYZ){
   
   
   // Here we will solve the diffusion question
-  solveModDiffEqn_FFT(qA,eff_wA,qint,ds,(int)Ns[0],1,k_vector,DXYZ);
+  solveModDiffEqn_FFT(qA,eff_wA,qint,ds,Ns[0],1,k_vector,DXYZ);
   // Here we are doing the sum to get the single chain partition function
   Q=0.0;
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
-	Q+=qA[i][j][l][(int)Ns[0]]*DXYZ[0]*DXYZ[1]*DXYZ[2];
+	Q+=qA[i][j][l][Ns[0]]*DXYZ[0]*DXYZ[1]*DXYZ[2];
       }
     }
   }
@@ -37,14 +40,15 @@ double Phi_A(double ****W, double *DXYZ){
 	phi[0][i][j][l]=0.0;
      
 	for(s=0;s<(Ns[0]+1);s++){
-	  if(s==0 || s==(int)Ns[0]){
-	    phi[0][i][j][l]+=0.5*qA[i][j][l][s]*qA[i][j][l][(int)Ns[0]-s]*ds;
+	  if(s==0 || s==Ns[0]){
+	    phi[0][i][j][l]+=0.5*qA[i][j][l][s]*qA[i][j][l][Ns[0]-s]*ds;
 	  }else{
-	    phi[0][i][j][l]+=qA[i][j][l][s]*qA[i][j][l][(int)Ns[0]-s]*ds;
+	    phi[0][i][j][l]+=qA[i][j][l][s]*qA[i][j][l][Ns[0]-s]*ds;
 	  }
 	}
 
 	phi[0][i][j][l]*=(pAave/Q);
+
       }
     }
   }

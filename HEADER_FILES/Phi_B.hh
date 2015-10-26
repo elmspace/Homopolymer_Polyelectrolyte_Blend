@@ -13,14 +13,14 @@ double Phi_B(double ****W, double *DXYZ){
   }
   
   // Here we will solve the diffusion question
-  solveModDiffEqn_FFT(qB,W[1],qint,ds,(int)Ns[1],1,k_vector,DXYZ);
+  solveModDiffEqn_FFT(qB,W[1],qint,ds,Ns[1],1,k_vector,DXYZ);
 
   // Here we are doing the sum to get the single chain partition function
   Q=0.0;
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
-	Q+=qB[i][j][l][(int)Ns[1]]*DXYZ[0]*DXYZ[1]*DXYZ[2];
+	Q+=qB[i][j][l][Ns[1]]*DXYZ[0]*DXYZ[1]*DXYZ[2];
       }
     }
   }
@@ -35,10 +35,10 @@ double Phi_B(double ****W, double *DXYZ){
 	phi[1][i][j][l]=0.0;
 
 	for(s=0;s<(Ns[1]+1);s++){
-	  if(s==0 || s==(int)Ns[1]){
-	    phi[1][i][j][l]+=0.5*qB[i][j][l][s]*qB[i][j][l][(int)Ns[1]-s]*ds;
+	  if(s==0 || s==Ns[1]){
+	    phi[1][i][j][l]+=0.5*qB[i][j][l][s]*qB[i][j][l][Ns[1]-s]*ds;
 	  }else{
-	    phi[1][i][j][l]+=qB[i][j][l][s]*qB[i][j][l][(int)Ns[1]-s]*ds;
+	    phi[1][i][j][l]+=qB[i][j][l][s]*qB[i][j][l][Ns[1]-s]*ds;
 	  }
 	}
 

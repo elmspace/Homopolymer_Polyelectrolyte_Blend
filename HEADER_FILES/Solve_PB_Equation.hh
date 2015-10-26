@@ -1,3 +1,6 @@
+/*
+  In this header file, we will be using FFTW to solve the PB equation
+*/
 void Solve_PB_Equation( ){
 
   int i,j,k;
@@ -19,8 +22,8 @@ void Solve_PB_Equation( ){
       for(k=0;k<Nz;k++){
 	ss=k+Nz*(j+Ny*i);
 	if(k_vector[i][j][k]==0.0){
-	  transformed_PB[ss][0]=0; 
-	  transformed_PB[ss][1]=0;
+	  transformed_PB[ss][0]=0.0; 
+	  transformed_PB[ss][1]=0.0;
 	}else{
 	  transformed_PB[ss][0]/=k_vector[i][j][k]; 
 	  transformed_PB[ss][1]/=k_vector[i][j][k]; 

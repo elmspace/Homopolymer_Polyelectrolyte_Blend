@@ -3,13 +3,9 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, int Ns, int sign, double ***k, double *dxyz){
   
-  int            i,j,l,s,ss;  // some counters
-  unsigned long  ijl; // This is used for the Fourier Transform
-  double         ***wds, ***kds;
- 
- 
-  wds=create_3d_double_array(Nx,Ny,Nz,"wds");
-  kds=create_3d_double_array(Nx,Ny,Nz,"kds");
+  int i,j,l,s,ss; 
+  unsigned long  ijl;
+
   for(i=0;i<Nx;i++){
     for(j=0;j<Ny;j++){
       for(l=0;l<Nz;l++){
@@ -96,7 +92,6 @@ void solveModDiffEqn_FFT(double ****q, double ***w, double ***qint, double ds, i
     }
   }
 
-  destroy_3d_double_array(wds);
-  destroy_3d_double_array(kds);
+
 
 };
