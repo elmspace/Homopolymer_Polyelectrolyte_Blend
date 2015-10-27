@@ -3,9 +3,9 @@
    The path for fftw libraries for the devices which this code will be used on is included
  */
 
-//#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
+#include </usr/local/include/fftw3.h>                                // This is for My Mac Pro
 //#include </opt/sharcnet/fftw/3.3.2/intel/include/fftw3.h>          // This is for Sharcnet
-#include </usr/include/fftw3.h>                                    // This is for use on Landua
+//#include </usr/include/fftw3.h>                                    // This is for use on Landua
 //#include </usr/local/include/fftw3.h>                              // This is for elmspace2
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -39,10 +39,10 @@ int RunTimePrint= 1;
 double NA = 100;
 double NB = NA;
 double NI = 1;
-double PA = 0.0000000001;
+double PA = 0.000000000001;
 double tau = 100.0;
 double epsilon = 6.5;
-double xAB = 3.0;
+double xAB = 5.0;
 double xAI = 0.0;
 double xBI = 0.0;
 double Lx = 4.0;
