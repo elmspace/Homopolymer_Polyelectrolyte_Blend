@@ -16,7 +16,7 @@ void Allocate (int task){
     Gradient_V_z = create_3d_double_array(Nx,Ny,Nz,"Gradient_V_z");
     eta = create_3d_double_array(Nx,Ny,Nz,"eta");
     chi = create_1d_double_array(ChainType,"chi");
-    Ns = create_1d_double_array(ChainType,"Ns");
+    Ns = create_1d_int_array(ChainType,"Ns");
     k_vector = create_3d_double_array(Nx,Ny,Nz,"k_vector");
     dxyz = create_1d_double_array(3,"dxyz");
     chiMatrix = create_2d_double_array(ChainType,ChainType,"chiMatrix");
@@ -80,7 +80,7 @@ void Allocate (int task){
     destroy_4d_double_array(phi);
     destroy_3d_double_array(phi_e);
     destroy_1d_double_array(chi);
-    destroy_1d_double_array(Ns);
+    destroy_1d_int_array(Ns);
     destroy_3d_double_array(k_vector);
     destroy_1d_double_array(dxyz);
     destroy_2d_double_array(chiMatrix);

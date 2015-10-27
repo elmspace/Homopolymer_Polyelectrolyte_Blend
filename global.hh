@@ -22,29 +22,36 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // Box resolution
-#define Nx 32
-#define Ny 32
-#define Nz 32
+#define Nx 20
+#define Ny 20
+#define Nz 20
 
 #define ChainType 3
 #define Pi 3.14159
+
+// Box minimization on/off
+int Box_min = 0;
+
+// Print during run time
+int RunTimePrint= 1;
 
 // Setting Parameters
 double NA = 100;
 double NB = NA;
 double NI = 1;
-double PA = 0.01;
-double tau = 1.0;
-double epsilon = 2.0;
-double xAB = 11.0;
+double PA = 0.0000000001;
+double tau = 100.0;
+double epsilon = 6.5;
+double xAB = 3.0;
 double xAI = 0.0;
 double xBI = 0.0;
-double Lx = 10.5;
-double Ly = 10.5;
-double Lz = 10.5;
-double epsilon_w = 0.05;
-double epsilon_p = 0.05;
+double Lx = 4.0;
+double Ly = 4.0;
+double Lz = 4.0;
+double epsilon_w = 0.01;
+double epsilon_p = 0.01;
 double precision=1.0e-3; 
+double del_Box=0.1;
 
 double pAave = 0.5;
 double pBave = 1.0-pAave;

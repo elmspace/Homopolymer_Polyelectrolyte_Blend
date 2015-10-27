@@ -1,18 +1,21 @@
-void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz, double **chiMatrix){
+/*
+  In this function, we will change the box size in x, y and z direction
+  to minimize the free energy of the system as function of box size
+*/
+void Box_Minimization( ){
 
   int     i,j,k,l,ii,jj,ll,kk;
   double  delx,dely,delz;
 
-  delx=0.003125;
-  dely=0.003125;
-  delz=0.003125;
-  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+  delx=del_Box/Nx;
+  dely=del_Box/Ny;
+  delz=del_Box/Nz;
+  
   l=0;
   for(i=-1;i<2;i++){
     for(j=-1;j<2;j++){
       for(k=-1;k<2;k++){
     
-
 	box_x[l]=i*delx;
 	box_y[l]=j*dely;
 	box_z[l]=k*delz;
@@ -26,20 +29,23 @@ void size_adjust(double ****w, double ****phi, double ***eta, double *Ns, double
 	    for(kk=0;kk<Nz;kk++){
 	      for(ll=0;ll<ChainType;ll++){
 		w_temp[ll][ii][jj][kk]=w[ll][ii][jj][kk];
-	      }}}}
+	      }
+	    }
+	  }
+	}
 	
 	dxyz_temp[0]+=box_x[l];
 	dxyz_temp[1]+=box_y[l];
 	dxyz_temp[2]+=box_z[l];
 	
-	box_fE[l]=FreeEnergy_Box_Edition(w_temp,phi,eta,Ns,ds,k_vector,chi,dxyz_temp,chiMatrix);
+	box_fE[l]=FreeEnergy_Box_Edition( );
 	
-	std::cout<<l<<" "<<dxyz_temp[0]<<" "<<dxyz_temp[1]<<" "<<dxyz_temp[2]<<" "<<box_fE[l]<<std::endl;
-
 	l=l+1;
 	
-      }}}
-  std::cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+      }
+    }
+  }
+  
   
   for(i=0;i<26;i++){
     ii=0;

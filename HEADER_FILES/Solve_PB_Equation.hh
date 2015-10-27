@@ -25,8 +25,8 @@ void Solve_PB_Equation( ){
 	  transformed_PB[ss][0]=0.0; 
 	  transformed_PB[ss][1]=0.0;
 	}else{
-	  transformed_PB[ss][0]/=k_vector[i][j][k]; 
-	  transformed_PB[ss][1]/=k_vector[i][j][k]; 
+	  transformed_PB[ss][0]/=-k_vector[i][j][k]; 
+	  transformed_PB[ss][1]/=-k_vector[i][j][k]; 
 	}
       }
     }

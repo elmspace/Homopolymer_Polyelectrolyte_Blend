@@ -20,9 +20,10 @@ double homogenousfE( ){
       fE_homo+=avphi[i]*avphi[j]*chiMatrix[i][j];
     }
   }
-  
-  return fE_homo;
+  fE_homo+=pAave*log(pAave)+(pBave/kappa)*log(pBave)+(NA*pIave)*log(pIave);
   
   destroy_1d_double_array(avphi);
+
+  return fE_homo;
 
 };

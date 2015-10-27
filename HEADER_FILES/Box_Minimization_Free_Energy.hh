@@ -1,4 +1,8 @@
-double FreeEnergy_Box_Edition(double ****w_temp, double ****phi, double ***eta, double *Ns, double ds, double ***k_vector, double *chi, double *dxyz_temp, double **chiMatrix){
+/*
+  In this function, which is being called by Box_Minimization function
+  will calculate the entropy of the system for a small change in box size
+*/
+double FreeEnergy_Box_Edition( ){
 
   double  QA,QB,QI; 
   double  fES,currentfE; 

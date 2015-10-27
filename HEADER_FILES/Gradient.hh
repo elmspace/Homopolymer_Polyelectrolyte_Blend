@@ -6,11 +6,9 @@
 
 void Gradient(double ***input_func, int direction, double  *dxyz, double ***gradient){
 
- 
   int i,j,k;
-
- 
-  if(direction==0){
+  
+  if(direction==0){ // x
 
     for(i=1;i<(Nx-1);i++){
       for(j=0;j<Ny;j++){
@@ -26,7 +24,7 @@ void Gradient(double ***input_func, int direction, double  *dxyz, double ***grad
       }
     }
 
-  }else if(direction==1){
+  }else if(direction==1){ // y
 
     for(i=0;i<Nx;i++){
       for(j=1;j<(Ny-1);j++){
@@ -42,7 +40,7 @@ void Gradient(double ***input_func, int direction, double  *dxyz, double ***grad
       }
     }
 
-  }else if(direction==2){
+  }else if(direction==2){ // z
     
     for(i=0;i<Nx;i++){
       for(j=0;j<Ny;j++){

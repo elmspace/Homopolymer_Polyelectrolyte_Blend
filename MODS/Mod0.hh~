@@ -1,0 +1,33 @@
+using namespace std;
+
+void Mod0(){
+  
+  double fE_homo;
+
+  Allocate(1);
+  Parameters( );
+
+  pAave = 0.0;
+  pBave = 1.0-pAave;
+  pIave = pAave*PA;
+
+  std::ofstream outputFile("./RESULTS/HomfE.dat");
+
+  do{
+    
+    fE_homo=homogenousfE( );
+
+    outputFile<<pAave<<" "<<fE_homo<<endl;
+    cout<<pAave<<" "<<fE_homo<<endl;
+
+    pAave += 0.01;
+    pBave = 1.0-pAave;
+    pIave = pAave*PA;
+    
+  }while(pAave<0.999);
+  outputFile.close();
+
+
+  Allocate(-1);
+ 
+}

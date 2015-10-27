@@ -34,6 +34,17 @@ void destroy_1d_double_array(double *array){
   sfree(array);
 }
 
+
+int *create_1d_int_array(int n1, const char *name){
+  int *array = (int *) smalloc(n1*sizeof(double),name);
+  return array;
+}
+
+void destroy_1d_int_array(int *array){
+  if (array == NULL) return;
+  sfree(array);
+}
+
 double **create_2d_double_array(int n1, int n2, const char *name){
   double *data = (double *) smalloc(n1*n2*sizeof(double),name);
   double **array = (double **) smalloc(n1*sizeof(double *),name);

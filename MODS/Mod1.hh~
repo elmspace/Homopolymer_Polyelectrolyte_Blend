@@ -17,18 +17,17 @@
 #include "./HEADER_FILES/Box_Minimization.hh" // Ok (Needs varification for results)
 #include "./HEADER_FILES/Gradient.hh" // Ok (Tested using dummy function, and it works)
 #include "./HEADER_FILES/Save_Data.hh" // Ok
-#include "./HEADER_FILES/Free_Energy.hh" // Ok
-
-#include "./MODS/Mod0.hh"
-#include "./MODS/Mod1.hh"
+#include "./HEADER_FILES/Free_Energy.hh" 
 
 using namespace std;
 
 int main(){
   
-
-  Mod0();
-
+  Allocate(1);
+  Parameters( );
+  omega( );
+  FreeEnergy( );
+  Allocate(-1);
   
   return 0;
 }

@@ -1,3 +1,6 @@
+/*
+  This function is the core of the program, it calculates the free energy of the system.
+*/
 void FreeEnergy( ){
 
   int maxIter=1000; 
@@ -10,30 +13,33 @@ void FreeEnergy( ){
   double deltaW;
   double fE_homo;
   
-
   msg=1;
   oldfE=1.0e2;
-  std::ofstream outputFile("./fE.dat");
+  std::ofstream outputFile("./RESULTS/fE.dat");
   do{
    
+    // Calculate the homogenous free energy
+    fE_homo=homogenousfE( );
+
     Wave_Vectors(dxyz);
     currentfE=0.0;
     deltafE=0.0;
   
     iter=0;  
-    
     do{
-      iter++;
-    
+   
       fEW=0.0;
       fEchi=0.0;
       fES=0.0;
 
+      // Solving the MDE
       QA=Phi_A(w,dxyz);
       QB=Phi_B(w,dxyz);
       QI=Phi_I(w,dxyz);
       Phi_e();
+      // Solving the PBE
       Solve_PB_Equation( );
+      // Calculating the incompressibility
       Incompressibility( );
     
       fEW=0.0;
@@ -45,7 +51,7 @@ void FreeEnergy( ){
       Gradient(V,0,dxyz,Gradient_V_x);
       Gradient(V,1,dxyz,Gradient_V_y);
       Gradient(V,2,dxyz,Gradient_V_z);
-
+ 
       // Calculating the contribution to the free energy from electrostatics
       fE_charge=0.0;
       for(i=0;i<Nx;i++){
@@ -84,14 +90,18 @@ void FreeEnergy( ){
       fEchi/=(2.0*((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
       fEW/=(((Nx*dxyz[0])*(Ny*dxyz[1])*(Nz*dxyz[2])));
        
-      fE_homo=homogenousfE( );
-
+      // Total free energy
       currentfE=-fES-fEW+fEchi-fE_charge-fE_homo;
  
+      // Difference between the curent of old free energy
       deltafE=fabs(currentfE-oldfE);
 
-      std::cout<<iter<<" "<<currentfE<< " " << deltaW<<" "<<delphi[Nx/2][Ny/2][Nz/2]<<std::endl;
-      
+      if(RunTimePrint==1){
+	// Output
+	std::cout<<iter<<" "<<currentfE<< " " << deltaW<<" "<<delphi[Nx/2][Ny/2][Nz/2]<<std::endl;
+      }      
+
+      // Using simple mixing to update the omega fields
       for(i=0;i<Nx;i++){
 	for(j=0;j<Ny;j++){
 	  for(k=0;k<Nz;k++){
@@ -102,28 +112,38 @@ void FreeEnergy( ){
 	}
       }
 
+      // Save the data every x number of iteration
       if((iter%10)==0){
 	saveData();
       }
-    
+
+      iter++;
     }while(deltaW>precision);
    
+ 
     outputFile <<dxyz[0]*Nx<<" "<<dxyz[1]*Ny<<" "<<dxyz[2]*Nz<<" "<<currentfE<<" "<<chi[4]<<std::endl;     
-    size_adjust(w,phi,eta,Ns,ds,k_vector,chi,dxyz,chiMatrix);
     
-    break;
-    if(oldfE<currentfE){
+
+    if(Box_min==1){
+
+      // Minimizing with respect to box size
+      Box_Minimization( );
+
+      if(oldfE<currentfE){
+	msg=0;
+      }
+      if(msg==1){
+	oldfE=currentfE;
+      }
+    }else{
       msg=0;
     }
-    if(msg!=0){
-      oldfE=currentfE;
-    }
    
-  }while(msg>0.5);
+  }while(msg==1);
 
   outputFile <<"Done"<<std::endl;
   outputFile.close();
-
+  saveData();
   
   
 };
